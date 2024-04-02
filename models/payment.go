@@ -8,7 +8,9 @@ import (
 
 type Payment struct {
 	gorm.Model
-	Payer string    `gorm:"not null" ;json:"payer"`
-	Cost  int64     `gorm:"not null" ;json:"cost"`
-	Date  time.Time `gorm:"not null" ;json:"date"`
+	PayerID uint      `gorm:"not null" ;json:"payer_id"`
+	Cost    int64     `gorm:"not null" ;json:"cost"`
+	Date    time.Time `gorm:"not null" ;json:"date"`
+	Items   []Coffee  `json:"items"`
+	HouseID uint      `json:"house_id"`
 }
