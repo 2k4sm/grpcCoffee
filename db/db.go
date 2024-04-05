@@ -13,13 +13,12 @@ type Config struct {
 	Username string
 	Password string
 	Host     string
-	Port     int
+	Port     string
 	DBName   string
-	SSLMode  string
 }
 
 func InitDB(config *Config) *gorm.DB {
-	dsn := fmt.Sprintf("user=%s password=%s dbname=%s host=%s port=%d sslmode=%s", config.Username, config.Password, config.DBName, config.Host, config.Port, config.SSLMode)
+	dsn := fmt.Sprintf("user=%s password=%s dbname=%s host=%s port=%s", config.Username, config.Password, config.DBName, config.Host, config.Port)
 
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
@@ -27,10 +26,12 @@ func InitDB(config *Config) *gorm.DB {
 	}
 	log.Infof("DB:%s successfully connected", config.DBName)
 
+	autoMigrateDB(db)
+
 	return db
 }
 
-func AutoMigrateDB(db *gorm.DB) {
+func autoMigrateDB(db *gorm.DB) {
 	userModel := models.User{}
 	coffeeModel := models.Coffee{}
 	paymentModel := models.Payment{}
