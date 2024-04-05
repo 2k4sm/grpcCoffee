@@ -3,6 +3,7 @@ package db
 import (
 	"fmt"
 
+	"github.com/2k4sm/httpCoffee/models"
 	"github.com/gofiber/fiber/v2/log"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -24,6 +25,21 @@ func InitDB(config *Config) *gorm.DB {
 	if err != nil {
 		log.Errorf("error Connecting to database: %s", err)
 	}
+	log.Infof("DB:%s successfully connected", config.DBName)
 
 	return db
+}
+
+func AutoMigrateDB(db *gorm.DB) {
+	userModel := models.User{}
+	coffeeModel := models.Coffee{}
+	paymentModel := models.Payment{}
+	coffeeHouseModel := models.CoffeeHouse{}
+
+	err := db.AutoMigrate(userModel, coffeeModel, paymentModel, coffeeHouseModel)
+	if err != nil {
+		log.Warnf("error automigrating models :%s", err)
+	}
+
+	log.Infof("automigration of models completed.")
 }
