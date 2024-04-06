@@ -22,7 +22,7 @@ func InitDB(config *Config) *gorm.DB {
 
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
-		log.Errorf("error Connecting to database: %s", err)
+		log.Fatalf("error Connecting to database: %s", err)
 	}
 	log.Infof("DB:%s successfully connected", config.DBName)
 

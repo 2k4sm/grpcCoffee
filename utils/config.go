@@ -20,7 +20,7 @@ func GetEnv(field string) string {
 func LoadEnv() {
 	err := godotenv.Load(".env")
 	if err != nil {
-		log.Errorf("error loading env variables: %s", err)
+		log.Fatalf("error loading env variables: %s", err)
 	}
 
 	log.Info("env variables loaded")
