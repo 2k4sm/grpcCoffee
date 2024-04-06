@@ -11,11 +11,6 @@ import (
 
 func main() {
 	utils.LoadEnv()
-	app := fiber.New(fiber.Config{
-		Prefork:      true,
-		ServerHeader: "httpCoffee",
-		AppName:      fmt.Sprintf("httpCoffee %s", utils.GetEnv("VERSION")),
-	})
 
 	var dbConf db.Config = db.Config{
 		Host:     utils.GetEnv("HOST"),
@@ -26,6 +21,12 @@ func main() {
 	}
 
 	db.InitDB(&dbConf)
+
+	app := fiber.New(fiber.Config{
+		Prefork:      true,
+		ServerHeader: "httpCoffee",
+		AppName:      fmt.Sprintf("httpCoffee %s", utils.GetEnv("VERSION")),
+	})
 
 	log.Fatal(app.Listen(":6969"))
 }
