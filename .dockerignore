@@ -1,0 +1,6 @@
+.db
+.env
+.gitignore
+*.yml
+LICENSE
+*.md

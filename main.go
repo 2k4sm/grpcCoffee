@@ -23,7 +23,7 @@ func main() {
 	db.InitDB(&dbConf)
 
 	app := fiber.New(fiber.Config{
-		Prefork:      true,
+		Prefork:      false,
 		ServerHeader: "httpCoffee",
 		AppName:      fmt.Sprintf("httpCoffee %s", utils.GetEnv("VERSION")),
 	})
