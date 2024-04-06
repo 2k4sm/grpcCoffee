@@ -24,7 +24,6 @@ func InitDB(config *Config) *gorm.DB {
 	if err != nil {
 		log.Fatalf("error Connecting to database: %s", err)
 	}
-	log.Infof("DB:%s successfully connected", config.DBName)
 
 	autoMigrateDB(db)
 
@@ -42,5 +41,4 @@ func autoMigrateDB(db *gorm.DB) {
 		log.Warnf("error automigrating models :%s", err)
 	}
 
-	log.Infof("automigration of models completed.")
 }
