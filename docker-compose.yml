@@ -10,8 +10,8 @@ services:
     volumes:
       - ./.db/:/home/sm2k4/var/lib/postgresql/data/
     environment:
-      POSTGRES_USER: sm2k4
-      POSTGRES_PASSWORD: heaven123HE!!
-      POSTGRES_DB: httpcoffee
+      POSTGRES_USER: ${USERNAME}
+      POSTGRES_PASSWORD: ${PASSWORD}
+      POSTGRES_DB: ${DB}
     expose:
       - "5432"
