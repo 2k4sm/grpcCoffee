@@ -3,7 +3,7 @@ package db
 import (
 	"fmt"
 
-	"github.com/2k4sm/httpCoffee/models"
+	models "github.com/2k4sm/httpCoffee/entities"
 	"github.com/gofiber/fiber/v2/log"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
