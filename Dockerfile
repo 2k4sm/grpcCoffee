@@ -6,7 +6,7 @@ RUN go mod tidy
 COPY . .
 RUN go build -o httpcoffee .
 
-FROM golang:1.21-bookworm as runner
+FROM golang:1.21-alpine3.18 as runner
 WORKDIR /app
 COPY --from=builder /app/httpcoffee .
 EXPOSE 6969
