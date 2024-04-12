@@ -17,17 +17,17 @@ type Config struct {
 	DBName   string
 }
 
-var DB *gorm.DB
-
-func InitDB(config *Config) {
+func InitDB(config *Config) *gorm.DB {
 	dsn := fmt.Sprintf("user=%s password=%s dbname=%s host=%s port=%s", config.Username, config.Password, config.DBName, config.Host, config.Port)
 
-	DB, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
+	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		log.Fatalf("error Connecting to database: %s", err)
 	}
 
-	autoMigrateDB(DB)
+	autoMigrateDB(db)
+
+	return db
 }
 
 func autoMigrateDB(db *gorm.DB) {

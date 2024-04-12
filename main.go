@@ -21,7 +21,7 @@ func main() {
 		Port:     utils.GetEnv("PORT"),
 	}
 
-	db.InitDB(&dbConf)
+	DB := db.InitDB(&dbConf)
 
 	app := fiber.New(fiber.Config{
 		Prefork:      false,
@@ -33,7 +33,7 @@ func main() {
 
 	coffees := api.Group("/coffees")
 
-	routes.CoffeeRoutes(coffees)
+	routes.CoffeeRoutes(coffees, DB)
 
 	log.Fatal(app.Listen(":6969"))
 }
