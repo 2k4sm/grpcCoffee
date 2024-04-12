@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/2k4sm/httpCoffee/db"
+	"github.com/2k4sm/httpCoffee/routes"
 	"github.com/2k4sm/httpCoffee/utils"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/log"
@@ -27,6 +28,12 @@ func main() {
 		ServerHeader: "httpCoffee",
 		AppName:      fmt.Sprintf("httpCoffee %s", utils.GetEnv("VERSION")),
 	})
+
+	api := app.Group("/api/v1")
+
+	coffees := api.Group("/coffees")
+
+	routes.CoffeeRoutes(coffees)
 
 	log.Fatal(app.Listen(":6969"))
 }

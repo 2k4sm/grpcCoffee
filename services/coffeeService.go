@@ -4,6 +4,7 @@ import (
 	"github.com/2k4sm/httpCoffee/dto"
 	"github.com/2k4sm/httpCoffee/entities"
 	"github.com/2k4sm/httpCoffee/repositories"
+	"github.com/gofiber/fiber/v2/log"
 	"gorm.io/gorm"
 )
 
@@ -25,20 +26,20 @@ func NewCoffeeService(coffeeRepository repositories.CoffeeRepositoryInterface) C
 	}
 }
 
-func (c *coffeeService) GetCoffees() []entities.Coffee {
+func (c coffeeService) GetCoffees() []entities.Coffee {
 	return c.CoffeeRepository.FindAll()
 }
 
-func (c *coffeeService) GetCoffeeById(id int) entities.Coffee {
+func (c coffeeService) GetCoffeeById(id int) entities.Coffee {
 	return c.CoffeeRepository.FindById(uint(id))
 }
 
-func (c *coffeeService) GetCoffeeByName(coffeeName string) entities.Coffee {
+func (c coffeeService) GetCoffeeByName(coffeeName string) entities.Coffee {
 	return c.CoffeeRepository.FindByName(coffeeName)
 }
 
-func (c *coffeeService) CreateNewCoffee(newCoffee dto.CreateCoffee) entities.Coffee {
-	coffee := &entities.Coffee{
+func (c coffeeService) CreateNewCoffee(newCoffee dto.CreateCoffee) entities.Coffee {
+	coffee := entities.Coffee{
 		Name:        newCoffee.Name,
 		Description: newCoffee.Description,
 		Origin:      newCoffee.Origin,
@@ -46,13 +47,14 @@ func (c *coffeeService) CreateNewCoffee(newCoffee dto.CreateCoffee) entities.Cof
 		Cost:        newCoffee.Cost,
 	}
 
-	return c.CoffeeRepository.Save(*coffee)
+	return c.CoffeeRepository.Save(coffee)
 }
 
-func (c *coffeeService) DeleteCoffee(id int) error {
+func (c coffeeService) DeleteCoffee(id int) error {
 	coffee := c.CoffeeRepository.FindById(uint(id))
 
 	if coffee.ID == 0 {
+		log.Error(gorm.ErrRecordNotFound)
 		return gorm.ErrRecordNotFound
 	}
 
