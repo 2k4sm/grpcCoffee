@@ -7,7 +7,7 @@ import (
 
 type Coffee struct {
 	Id          uint     `json:"id"`
-	Name        string   `json:"coffee_name"`
+	Name        string   `json:"name"`
 	Description string   `json:"description"`
 	Origin      string   `json:"origin"`
 	Contents    []string `json:"contents"`
@@ -15,7 +15,7 @@ type Coffee struct {
 }
 
 type CreateCoffee struct {
-	Name        string   `json:"coffee_name"`
+	Name        string   `json:"name"`
 	Description string   `json:"description"`
 	Origin      string   `json:"origin"`
 	Contents    []string `json:"contents"`
