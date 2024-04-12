@@ -3,9 +3,9 @@ package main
 import (
 	"fmt"
 
-	"github.com/2k4sm/httpCoffee/db"
-	"github.com/2k4sm/httpCoffee/routes"
-	"github.com/2k4sm/httpCoffee/utils"
+	"github.com/2k4sm/httpCoffee/src/db"
+	"github.com/2k4sm/httpCoffee/src/routes"
+	"github.com/2k4sm/httpCoffee/src/utils"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/log"
 )

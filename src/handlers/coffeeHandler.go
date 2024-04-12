@@ -4,8 +4,8 @@ import (
 	"net/http"
 	"strconv"
 
-	"github.com/2k4sm/httpCoffee/dto"
-	"github.com/2k4sm/httpCoffee/services"
+	"github.com/2k4sm/httpCoffee/src/dto"
+	"github.com/2k4sm/httpCoffee/src/services"
 	"github.com/gofiber/fiber/v2"
 )
 

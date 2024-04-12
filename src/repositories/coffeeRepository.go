@@ -1,7 +1,7 @@
 package repositories
 
 import (
-	"github.com/2k4sm/httpCoffee/entities"
+	"github.com/2k4sm/httpCoffee/src/entities"
 	"github.com/gofiber/fiber/v2/log"
 	"gorm.io/gorm"
 )
