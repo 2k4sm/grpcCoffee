@@ -18,17 +18,17 @@ type CoffeeHandlerInterface interface {
 	DeleteCoffeeById(ctx *fiber.Ctx) error
 }
 
-type CoffeeHandler struct {
+type coffeeHandler struct {
 	CoffeeService services.CoffeeServiceInterface
 }
 
 func NewCoffeeHandler(coffeeService services.CoffeeServiceInterface) CoffeeHandlerInterface {
-	return &CoffeeHandler{
+	return &coffeeHandler{
 		CoffeeService: coffeeService,
 	}
 }
 
-func (c CoffeeHandler) GetCoffees(ctx *fiber.Ctx) error {
+func (c *coffeeHandler) GetCoffees(ctx *fiber.Ctx) error {
 	coffees := c.CoffeeService.GetCoffees()
 
 	coffeeResponse := []dto.Coffee{}
@@ -40,7 +40,7 @@ func (c CoffeeHandler) GetCoffees(ctx *fiber.Ctx) error {
 	return ctx.JSON(coffeeResponse)
 }
 
-func (c CoffeeHandler) GetCoffeeById(ctx *fiber.Ctx) error {
+func (c *coffeeHandler) GetCoffeeById(ctx *fiber.Ctx) error {
 	reqParam := ctx.Params("coffeeId")
 
 	reqIntParam, err := strconv.Atoi(reqParam)
@@ -56,7 +56,7 @@ func (c CoffeeHandler) GetCoffeeById(ctx *fiber.Ctx) error {
 	return ctx.JSON(coffeeResponse)
 }
 
-func (c CoffeeHandler) GetCoffeeByName(ctx *fiber.Ctx) error {
+func (c *coffeeHandler) GetCoffeeByName(ctx *fiber.Ctx) error {
 	reqParam := ctx.Params("coffeeName")
 
 	coffee := c.CoffeeService.GetCoffeeByName(reqParam)
@@ -66,7 +66,7 @@ func (c CoffeeHandler) GetCoffeeByName(ctx *fiber.Ctx) error {
 	return ctx.JSON(coffeeResponse)
 }
 
-func (c CoffeeHandler) CreateNewCoffee(ctx *fiber.Ctx) error {
+func (c *coffeeHandler) CreateNewCoffee(ctx *fiber.Ctx) error {
 	var newCoffee dto.CreateCoffee
 
 	if err := ctx.BodyParser(&newCoffee); err != nil {
@@ -82,7 +82,7 @@ func (c CoffeeHandler) CreateNewCoffee(ctx *fiber.Ctx) error {
 
 }
 
-func (c CoffeeHandler) DeleteCoffeeById(ctx *fiber.Ctx) error {
+func (c *coffeeHandler) DeleteCoffeeById(ctx *fiber.Ctx) error {
 	reqParam := ctx.Params("coffeeId")
 
 	reqIntParam, err := strconv.Atoi(reqParam)

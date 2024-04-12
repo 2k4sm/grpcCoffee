@@ -1,6 +1,9 @@
 package dto
 
-import "github.com/2k4sm/httpCoffee/entities"
+import (
+	"github.com/2k4sm/httpCoffee/entities"
+	"github.com/lib/pq"
+)
 
 type Coffee struct {
 	Id          uint     `json:"id"`
@@ -25,7 +28,7 @@ func ParseFromEntities(coffee entities.Coffee) Coffee {
 		Name:        coffee.Name,
 		Description: coffee.Description,
 		Origin:      coffee.Origin,
-		Contents:    coffee.Contents,
+		Contents:    []string(coffee.Contents),
 		Cost:        coffee.Cost,
 	}
 	return coffees
@@ -36,7 +39,7 @@ func ParseToEntities(coffee CreateCoffee) entities.Coffee {
 		Name:        coffee.Name,
 		Description: coffee.Description,
 		Origin:      coffee.Origin,
-		Contents:    entities.MultiString(coffee.Contents),
+		Contents:    pq.StringArray(coffee.Contents),
 		Cost:        coffee.Cost,
 	}
 	return coffees
