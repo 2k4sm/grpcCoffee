@@ -2,6 +2,7 @@ package repositories
 
 import (
 	"github.com/2k4sm/httpCoffee/entities"
+	"github.com/gofiber/fiber/v2/log"
 	"gorm.io/gorm"
 )
 
@@ -26,26 +27,46 @@ func NewCoffeeRepository(db *gorm.DB) CoffeeRepositoryInterface {
 func (c *coffeeRepository) FindAll() []entities.Coffee {
 	var coffees []entities.Coffee
 	c.Db.Find(&coffees)
+
+	if len(coffees) == 0 {
+		log.Info(gorm.ErrRecordNotFound.Error())
+	}
 	return coffees
 }
 
 func (c *coffeeRepository) FindById(id uint) entities.Coffee {
 	var coffee entities.Coffee
 	c.Db.First(&coffee, id)
+
+	if coffee.ID == 0 {
+		log.Info(gorm.ErrRecordNotFound)
+	}
 	return coffee
 }
 
 func (c *coffeeRepository) FindByName(coffeeName string) entities.Coffee {
 	var coffee entities.Coffee
 	c.Db.First(&coffee, "name = ?", coffeeName)
+
+	if coffee.ID == 0 {
+		log.Info(gorm.ErrRecordNotFound)
+	}
 	return coffee
 }
 
 func (c *coffeeRepository) Save(newCoffee *entities.Coffee) entities.Coffee {
-	c.Db.Save(newCoffee)
+	err := c.Db.Save(newCoffee)
+
+	if err.Error != nil {
+		log.Info(err.Error)
+	}
 	return *newCoffee
 }
 
 func (c *coffeeRepository) Delete(coffee *entities.Coffee) {
-	c.Db.Delete(coffee)
+	err := c.Db.Delete(coffee)
+
+	if err.Error != nil {
+		log.Info(err.Error)
+	}
 }

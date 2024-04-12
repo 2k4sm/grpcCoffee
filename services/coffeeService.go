@@ -4,8 +4,6 @@ import (
 	"github.com/2k4sm/httpCoffee/dto"
 	"github.com/2k4sm/httpCoffee/entities"
 	"github.com/2k4sm/httpCoffee/repositories"
-	"github.com/gofiber/fiber/v2/log"
-	"gorm.io/gorm"
 )
 
 type CoffeeServiceInterface interface {
@@ -46,11 +44,6 @@ func (c *coffeeService) CreateNewCoffee(newCoffee dto.CreateCoffee) entities.Cof
 
 func (c *coffeeService) DeleteCoffee(id int) error {
 	coffee := c.CoffeeRepository.FindById(uint(id))
-
-	if coffee.ID == 0 {
-		log.Error(gorm.ErrRecordNotFound)
-		return gorm.ErrRecordNotFound
-	}
 
 	c.CoffeeRepository.Delete(&coffee)
 
