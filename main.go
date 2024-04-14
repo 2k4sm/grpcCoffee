@@ -32,8 +32,9 @@ func main() {
 	api := app.Group("/api/v1")
 
 	coffees := api.Group("/coffees")
+	houses := api.Group("/houses")
 
 	routes.CoffeeRoutes(coffees, DB)
-
+	routes.HouseRoutes(houses, DB)
 	log.Fatal(app.Listen(":6969"))
 }
