@@ -40,7 +40,7 @@ func (c *coffeeHandler) GetCoffees(ctx *fiber.Ctx) error {
 	coffeeResponse := []dto.Coffee{}
 
 	for _, coffee := range coffees {
-		coffeeResponse = append(coffeeResponse, dto.ParseFromEntities(coffee))
+		coffeeResponse = append(coffeeResponse, dto.ParseFromCoffeeEntity(coffee))
 	}
 
 	return ctx.JSON(coffeeResponse)
@@ -67,7 +67,7 @@ func (c *coffeeHandler) GetCoffeeById(ctx *fiber.Ctx) error {
 		})
 	}
 
-	coffeeResponse := dto.ParseFromEntities(coffee)
+	coffeeResponse := dto.ParseFromCoffeeEntity(coffee)
 
 	return ctx.JSON(coffeeResponse)
 }
@@ -84,7 +84,7 @@ func (c *coffeeHandler) GetCoffeeByName(ctx *fiber.Ctx) error {
 		})
 	}
 
-	coffeeResponse := dto.ParseFromEntities(coffee)
+	coffeeResponse := dto.ParseFromCoffeeEntity(coffee)
 
 	return ctx.JSON(coffeeResponse)
 }
@@ -101,7 +101,7 @@ func (c *coffeeHandler) CreateNewCoffee(ctx *fiber.Ctx) error {
 
 	coffee := c.CoffeeService.CreateNewCoffee(newCoffee)
 
-	coffeeResponse := dto.ParseFromEntities(coffee)
+	coffeeResponse := dto.ParseFromCoffeeEntity(coffee)
 
 	return ctx.Status(http.StatusCreated).JSON(coffeeResponse)
 

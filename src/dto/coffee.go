@@ -22,7 +22,7 @@ type CreateCoffee struct {
 	Cost        int64    `json:"cost"`
 }
 
-func ParseFromEntities(coffee entities.Coffee) Coffee {
+func ParseFromCoffeeEntity(coffee entities.Coffee) Coffee {
 	coffees := Coffee{
 		Id:          coffee.ID,
 		Name:        coffee.Name,
@@ -34,7 +34,7 @@ func ParseFromEntities(coffee entities.Coffee) Coffee {
 	return coffees
 }
 
-func ParseToEntities(coffee CreateCoffee) entities.Coffee {
+func ParseToCoffeeEntity(coffee CreateCoffee) entities.Coffee {
 	coffees := entities.Coffee{
 		Name:        coffee.Name,
 		Description: coffee.Description,

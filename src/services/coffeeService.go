@@ -37,7 +37,7 @@ func (c *coffeeService) GetCoffeeByName(coffeeName string) entities.Coffee {
 }
 
 func (c *coffeeService) CreateNewCoffee(newCoffee dto.CreateCoffee) entities.Coffee {
-	coffee := dto.ParseToEntities(newCoffee)
+	coffee := dto.ParseToCoffeeEntity(newCoffee)
 
 	return c.CoffeeRepository.Save(&coffee)
 }
