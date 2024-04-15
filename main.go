@@ -19,6 +19,7 @@ func main() {
 		Password: utils.GetEnv("PASSWORD"),
 		DBName:   utils.GetEnv("DB"),
 		Port:     utils.GetEnv("PORT"),
+		SSLMODE:  utils.GetEnv("SSLMODE"),
 	}
 
 	DB := db.InitDB(&dbConf)

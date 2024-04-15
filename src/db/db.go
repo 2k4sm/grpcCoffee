@@ -15,10 +15,11 @@ type Config struct {
 	Host     string
 	Port     string
 	DBName   string
+	SSLMODE  string
 }
 
 func InitDB(config *Config) *gorm.DB {
-	dsn := fmt.Sprintf("user=%s password=%s dbname=%s host=%s port=%s", config.Username, config.Password, config.DBName, config.Host, config.Port)
+	dsn := fmt.Sprintf("user=%s password=%s dbname=%s host=%s port=%s sslmode=%s", config.Username, config.Password, config.DBName, config.Host, config.Port, config.SSLMODE)
 
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
