@@ -18,7 +18,7 @@ func main() {
 		Username: utils.GetEnv("USERNAME"),
 		Password: utils.GetEnv("PASSWORD"),
 		DBName:   utils.GetEnv("DB"),
-		Port:     utils.GetEnv("PORT"),
+		DBPORT:     utils.GetEnv("DBPORT"),
 		SSLMODE:  utils.GetEnv("SSLMODE"),
 	}
 
