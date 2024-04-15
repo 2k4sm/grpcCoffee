@@ -10,6 +10,7 @@ import (
 	"github.com/2k4sm/httpCoffee/src/utils"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/log"
+	"github.com/gofiber/fiber/v2/middleware/redirect"
 )
 
 func main() {
@@ -32,8 +33,16 @@ func main() {
 		AppName:      fmt.Sprintf("httpCoffee %s", utils.GetEnv("VERSION")),
 	})
 
-	api := app.Group("/v0")
-	api.Get("/", checkServer)
+	app.Use(redirect.New(redirect.Config{
+		Rules: map[string]string{
+			"/": "/v0",
+		},
+		StatusCode: 301,
+	}))
+
+	app.Get("/"+utils.GetEnv("VERSION"), checkServer)
+
+	api := app.Group("/" + utils.GetEnv("VERSION"))
 
 	coffees := api.Group("/coffees")
 	houses := api.Group("/houses")
@@ -47,7 +56,7 @@ func checkServer(ctx *fiber.Ctx) error {
 	return ctx.Status(http.StatusOK).JSON(
 		fiber.Map{
 			"status":  http.StatusOK,
-			"message": "server started...",
+			"message": "server started successfully",
 			"time":    time.Now(),
 		},
 	)
