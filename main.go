@@ -5,9 +5,9 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/2k4sm/httpCoffee/src/db"
-	"github.com/2k4sm/httpCoffee/src/routes"
-	"github.com/2k4sm/httpCoffee/src/utils"
+	"github.com/2k4sm/httpCoffee/src/main/db"
+	"github.com/2k4sm/httpCoffee/src/main/routes"
+	"github.com/2k4sm/httpCoffee/src/main/utils"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/log"
 	"github.com/gofiber/fiber/v2/middleware/redirect"

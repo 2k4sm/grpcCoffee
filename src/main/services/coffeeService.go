@@ -1,9 +1,9 @@
 package services
 
 import (
-	"github.com/2k4sm/httpCoffee/src/dto"
-	"github.com/2k4sm/httpCoffee/src/entities"
-	"github.com/2k4sm/httpCoffee/src/repositories"
+	"github.com/2k4sm/httpCoffee/src/main/dto"
+	"github.com/2k4sm/httpCoffee/src/main/entities"
+	"github.com/2k4sm/httpCoffee/src/main/repositories"
 )
 
 type CoffeeServiceInterface interface {

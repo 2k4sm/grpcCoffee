@@ -1,7 +1,7 @@
 package dto
 
 import (
-	"github.com/2k4sm/httpCoffee/src/entities"
+	"github.com/2k4sm/httpCoffee/src/main/entities"
 	"github.com/lib/pq"
 )
 

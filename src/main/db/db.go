@@ -3,7 +3,7 @@ package db
 import (
 	"fmt"
 
-	models "github.com/2k4sm/httpCoffee/src/entities"
+	models "github.com/2k4sm/httpCoffee/src/main/entities"
 	"github.com/gofiber/fiber/v2/log"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -13,7 +13,7 @@ type Config struct {
 	Username string
 	Password string
 	Host     string
-	DBPORT     string
+	DBPORT   string
 	DBName   string
 	SSLMODE  string
 }

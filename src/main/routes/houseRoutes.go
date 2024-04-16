@@ -1,9 +1,9 @@
 package routes
 
 import (
-	"github.com/2k4sm/httpCoffee/src/handlers"
-	"github.com/2k4sm/httpCoffee/src/repositories"
-	"github.com/2k4sm/httpCoffee/src/services"
+	"github.com/2k4sm/httpCoffee/src/main/handlers"
+	"github.com/2k4sm/httpCoffee/src/main/repositories"
+	"github.com/2k4sm/httpCoffee/src/main/services"
 	"github.com/gofiber/fiber/v2"
 	"gorm.io/gorm"
 )
