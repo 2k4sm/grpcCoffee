@@ -49,7 +49,13 @@ func main() {
 
 	routes.CoffeeRoutes(coffees, DB)
 	routes.HouseRoutes(houses, DB)
-	log.Fatal(app.Listen(":6969"))
+	port := utils.GetEnv("PORT")
+
+	if port == "" {
+		port = "6969"
+	}
+
+	log.Fatal(app.Listen(port))
 }
 
 func checkServer(ctx *fiber.Ctx) error {
