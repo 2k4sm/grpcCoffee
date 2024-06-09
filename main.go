@@ -35,7 +35,7 @@ func main() {
 
 	app.Use(redirect.New(redirect.Config{
 		Rules: map[string]string{
-			"/": "/v0",
+			"/": "/" + utils.GetEnv("VERSION"),
 		},
 		StatusCode: 301,
 	}))
