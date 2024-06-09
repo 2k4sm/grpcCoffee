@@ -46,7 +46,11 @@ func main() {
 
 	coffees := api.Group("/coffees")
 	houses := api.Group("/houses")
+	pays := api.Group("/pays")
+	users := api.Group("/users")
 
+	routes.UserRoutes(users, DB)
+	routes.PaymentRoutes(pays, DB)
 	routes.CoffeeRoutes(coffees, DB)
 	routes.HouseRoutes(houses, DB)
 	port := fmt.Sprintf(":%s", utils.GetEnv("PORT"))
