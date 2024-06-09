@@ -49,10 +49,10 @@ func main() {
 
 	routes.CoffeeRoutes(coffees, DB)
 	routes.HouseRoutes(houses, DB)
-	port := utils.GetEnv("PORT")
+	port := fmt.Sprintf(":%s", utils.GetEnv("PORT"))
 
 	if port == "" {
-		port = "6969"
+		port = ":6969"
 	}
 
 	log.Fatal(app.Listen(port))
