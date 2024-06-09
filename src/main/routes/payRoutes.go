@@ -15,8 +15,8 @@ func PaymentRoutes(router fiber.Router, db *gorm.DB) {
 
 	router.Get("/", paymentHandler.GetAll)
 	router.Get("/:paymentId", paymentHandler.GetById)
-	router.Get("/names/:CoffeeHouseID", paymentHandler.GetAllByHouseId)
-	router.Get("/names/:UserID", paymentHandler.GetAllByUserId)
+	router.Get("/names/:houseId", paymentHandler.GetAllByHouseId)
+	router.Get("/names/:userId", paymentHandler.GetAllByUserId)
 	router.Post("/", paymentHandler.CreatePayment)
 	router.Delete("/:paymentId", paymentHandler.DeletePayment)
 

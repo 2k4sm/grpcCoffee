@@ -72,7 +72,7 @@ func (p *payHandler) GetById(ctx *fiber.Ctx) error {
 }
 
 func (p *payHandler) GetAllByUserId(ctx *fiber.Ctx) error {
-	reqId := ctx.Params("UserID")
+	reqId := ctx.Params("userId")
 
 	reqIntId, err := strconv.Atoi(reqId)
 
@@ -96,7 +96,7 @@ func (p *payHandler) GetAllByUserId(ctx *fiber.Ctx) error {
 }
 
 func (p *payHandler) GetAllByHouseId(ctx *fiber.Ctx) error {
-	reqId := ctx.Params("CoffeeHouseID")
+	reqId := ctx.Params("houseId")
 
 	reqIntId, err := strconv.Atoi(reqId)
 
